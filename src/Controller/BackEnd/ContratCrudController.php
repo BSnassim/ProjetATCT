@@ -2,17 +2,24 @@
 
 namespace App\Controller\BackEnd;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Contrat;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class ContratCrudController extends AbstractController
+class ContratCrudController extends AbstractCrudController
 {
-    #[Route('/back/end/contrat/crud', name: 'back_end_contrat_crud')]
-    public function index(): Response
+    public static function getEntityFqcn(): string
     {
-        return $this->render('back_end/contrat_crud/index.html.twig', [
-            'controller_name' => 'ContratCrudController',
-        ]);
+        return Contrat::class;
     }
+
+    /*
+    public function configureFields(string $pageName): iterable
+    {
+        return [
+            IdField::new('id'),
+            TextField::new('title'),
+            TextEditorField::new('description'),
+        ];
+    }
+    */
 }

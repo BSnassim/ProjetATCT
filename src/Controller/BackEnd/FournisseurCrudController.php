@@ -2,17 +2,24 @@
 
 namespace App\Controller\BackEnd;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Fournisseur;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class FournisseurCrudController extends AbstractController
+class FournisseurCrudController extends AbstractCrudController
 {
-    #[Route('/back/end/fournisseur/crud', name: 'back_end_fournisseur_crud')]
-    public function index(): Response
+    public static function getEntityFqcn(): string
     {
-        return $this->render('back_end/fournisseur_crud/index.html.twig', [
-            'controller_name' => 'FournisseurCrudController',
-        ]);
+        return Fournisseur::class;
     }
+
+    /*
+    public function configureFields(string $pageName): iterable
+    {
+        return [
+            IdField::new('id'),
+            TextField::new('title'),
+            TextEditorField::new('description'),
+        ];
+    }
+    */
 }
