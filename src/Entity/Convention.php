@@ -33,15 +33,15 @@ class Convention
     private $montant;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $libellePDF;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Fournisseur::class, inversedBy="conventions")
      * @ORM\JoinColumn(nullable=false)
      */
     private $numFournisseur;
+
+    /**
+     * @ORM\Column(type="blob")
+     */
+    private $libellePDF;
 
     public function getId(): ?int
     {
@@ -84,18 +84,6 @@ class Convention
         return $this;
     }
 
-    public function getLibellePDF(): ?string
-    {
-        return $this->libellePDF;
-    }
-
-    public function setLibellePDF(string $libellePDF): self
-    {
-        $this->libellePDF = $libellePDF;
-
-        return $this;
-    }
-
     public function getNumFournisseur(): ?Fournisseur
     {
         return $this->numFournisseur;
@@ -104,6 +92,18 @@ class Convention
     public function setNumFournisseur(?Fournisseur $numFournisseur): self
     {
         $this->numFournisseur = $numFournisseur;
+
+        return $this;
+    }
+
+    public function getLibellePDF()
+    {
+        return $this->libellePDF;
+    }
+
+    public function setLibellePDF($libellePDF): self
+    {
+        $this->libellePDF = $libellePDF;
 
         return $this;
     }

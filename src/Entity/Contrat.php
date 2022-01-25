@@ -63,15 +63,15 @@ class Contrat
     private $augmentation;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $libellePDF;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Fournisseur::class, inversedBy="contrats")
      * @ORM\JoinColumn(nullable=false)
      */
     private $numFournisseur;
+
+    /**
+     * @ORM\Column(type="blob")
+     */
+    private $libellePDF;
 
     public function getId(): ?int
     {
@@ -186,18 +186,6 @@ class Contrat
         return $this;
     }
 
-    public function getLibellePDF(): ?string
-    {
-        return $this->libellePDF;
-    }
-
-    public function setLibellePDF(?string $libellePDF): self
-    {
-        $this->libellePDF = $libellePDF;
-
-        return $this;
-    }
-
     public function getNumFournisseur(): ?Fournisseur
     {
         return $this->numFournisseur;
@@ -206,6 +194,18 @@ class Contrat
     public function setNumFournisseur(?Fournisseur $numFournisseur): self
     {
         $this->numFournisseur = $numFournisseur;
+
+        return $this;
+    }
+
+    public function getLibellePDF()
+    {
+        return $this->libellePDF;
+    }
+
+    public function setLibellePDF($libellePDF): self
+    {
+        $this->libellePDF = $libellePDF;
 
         return $this;
     }
