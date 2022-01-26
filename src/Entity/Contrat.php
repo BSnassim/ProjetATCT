@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\ContratRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ContratRepository::class)
+ * @Vich\Uploadable
  */
 class Contrat
 {
@@ -69,9 +71,14 @@ class Contrat
     private $numFournisseur;
 
     /**
-     * @ORM\Column(type="blob")
+     * @ORM\Column(type="string", length=255)
      */
     private $libellePDF;
+
+    /**
+     * @Vich\UploadableField(mapping="contratUpload", fileNameProperty="libellePDF")
+     */
+    private $filePDF;
 
     public function getId(): ?int
     {

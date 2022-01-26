@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\ConventionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ConventionRepository::class)
+ * @Vich\Uploadable
  */
 class Convention
 {
@@ -42,6 +44,12 @@ class Convention
      * @ORM\Column(type="blob")
      */
     private $libellePDF;
+
+    /**
+     * @Vich\UploadableField(mapping="contratUpload", fileNameProperty="libellePDF")
+     */
+    private $filePDF;
+
 
     public function getId(): ?int
     {
