@@ -4,9 +4,14 @@ namespace App\Entity;
 
 use App\Repository\ConventionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass=ConventionRepository::class)
+ * @Vich\Uploadable
  */
 class Convention
 {
@@ -33,15 +38,47 @@ class Convention
     private $montant;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Fournisseur::class, inversedBy="conventions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $numFournisseur;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $libellePDF;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Fournisseur::class, inversedBy="conventions")
-     * @ORM\JoinColumn(nullable=false)
+     * @Vich\UploadableField(mapping="conventionUpload", fileNameProperty="libellePDF")
      */
-    private $numFournisseur;
+    private $filePDF;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+    
+    public function __construct()
+    {
+        $this->updatedAt = new DateTime();
+    }
+
+    public function getfilePDF(): ?File
+    {
+        return $this->filePDF;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $filePDF
+     */
+    public function setfilePDF(?File $filePDF = null): void
+    {
+        $this->filePDF = $filePDF;
+
+        if(null !== $filePDF) {
+            $this->updatedAt = new DateTime();
+        }
+    }
 
     public function getId(): ?int
     {
@@ -84,18 +121,6 @@ class Convention
         return $this;
     }
 
-    public function getLibellePDF(): ?string
-    {
-        return $this->libellePDF;
-    }
-
-    public function setLibellePDF(string $libellePDF): self
-    {
-        $this->libellePDF = $libellePDF;
-
-        return $this;
-    }
-
     public function getNumFournisseur(): ?Fournisseur
     {
         return $this->numFournisseur;
@@ -104,6 +129,18 @@ class Convention
     public function setNumFournisseur(?Fournisseur $numFournisseur): self
     {
         $this->numFournisseur = $numFournisseur;
+
+        return $this;
+    }
+
+    public function getLibellePDF()
+    {
+        return $this->libellePDF;
+    }
+
+    public function setLibellePDF($libellePDF): self
+    {
+        $this->libellePDF = $libellePDF;
 
         return $this;
     }

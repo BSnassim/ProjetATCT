@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use App\Controller\BackEnd\FournisseurCrudController;
 use App\Entity\Fournisseur;
+use App\Entity\Contrat;
+use App\Entity\Convention;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -20,8 +22,8 @@ class DashboardController extends AbstractDashboardController
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
-        $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        return $this->redirect($adminUrlGenerator->setController(FournisseurCrudController::class)->generateUrl());
+        //$adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
+        //return $this->redirect($adminUrlGenerator->setController(FournisseurCrudController::class)->generateUrl());
 
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
@@ -32,7 +34,7 @@ class DashboardController extends AbstractDashboardController
         // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
         // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
         //
-        // return $this->render('some/path/my-dashboard.html.twig');
+        return $this->render('@EasyAdmin/page/content.html.twig');
     }
 
     public function configureDashboard(): Dashboard
@@ -45,5 +47,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Fournisseurs', 'fas fa-list', Fournisseur::class);
+        yield MenuItem::linkToCrud('Contrats', 'fas fa-list', Contrat::class);
+        yield MenuItem::linkToCrud('Convention', 'fas fa-list', Convention::class);
     }
 }
