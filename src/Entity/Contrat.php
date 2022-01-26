@@ -93,7 +93,7 @@ class Contrat
         $this->updatedAt = new DateTime();
     }
 
-    public function getfilePDF(): ?file 
+    public function getfilePDF(): ?File 
     {
         return $this->filePDF;
     }

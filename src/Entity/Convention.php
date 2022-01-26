@@ -6,6 +6,8 @@ use App\Repository\ConventionRepository;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass=ConventionRepository::class)
@@ -42,12 +44,12 @@ class Convention
     private $numFournisseur;
 
     /**
-     * @ORM\Column(type="blob")
+     * @ORM\Column(type="string", length=255)
      */
     private $libellePDF;
 
     /**
-     * @Vich\UploadableField(mapping="contratUpload", fileNameProperty="libellePDF")
+     * @Vich\UploadableField(mapping="conventionUpload", fileNameProperty="libellePDF")
      */
     private $filePDF;
 
@@ -61,15 +63,19 @@ class Convention
         $this->updatedAt = new DateTime();
     }
 
-    public function getfilePDF() {
+    public function getfilePDF(): ?File
+    {
         return $this->filePDF;
     }
 
-    public function setfilePDF($filePDF): void
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $filePDF
+     */
+    public function setfilePDF(?File $filePDF = null): void
     {
         $this->filePDF = $filePDF;
 
-        if($filePDF) {
+        if(null !== $filePDF) {
             $this->updatedAt = new DateTime();
         }
     }
