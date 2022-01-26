@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ContratRepository;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -91,7 +92,7 @@ class Contrat
     }
 
     public function getfilePDF() {
-        return $this->pieceJointeFile;
+        return $this->filePDF;
     }
 
     public function setfilePDF($filePDF): void
