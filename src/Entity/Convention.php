@@ -50,6 +50,28 @@ class Convention
      */
     private $filePDF;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+    
+    public function __construct()
+    {
+        $this->updatedAt = new DateTime();
+    }
+
+    public function getfilePDF() {
+        return $this->pieceJointeFile;
+    }
+
+    public function setfilePDF($filePDF): void
+    {
+        $this->filePDF = $filePDF;
+
+        if($filePDF) {
+            $this->updatedAt = new DateTime();
+        }
+    }
 
     public function getId(): ?int
     {

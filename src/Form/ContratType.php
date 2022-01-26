@@ -22,6 +22,7 @@ class ContratType extends AbstractType
             ->add('periodiciteFacturation')
             ->add('augmentation')
             ->add('libellePDF')
+            ->add('filePDF',VichFileType::class)
             ->add('numFournisseur')
         ;
     }
