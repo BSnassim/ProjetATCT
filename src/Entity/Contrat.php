@@ -6,6 +6,8 @@ use App\Repository\ContratRepository;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass=ContratRepository::class)
@@ -91,15 +93,19 @@ class Contrat
         $this->updatedAt = new DateTime();
     }
 
-    public function getfilePDF() {
+    public function getfilePDF(): ?file 
+    {
         return $this->filePDF;
     }
 
-    public function setfilePDF($filePDF): void
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $filePDF
+     */
+    public function setfilePDF(?File $filePDF = null): void
     {
         $this->filePDF = $filePDF;
         
-        if($filePDF) {
+        if(null !== $filePDF) {
             $this->updatedAt = new DateTime();
         }
     }
