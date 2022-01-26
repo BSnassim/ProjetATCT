@@ -57,6 +57,11 @@ class Convention
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $objet;
     
     public function __construct()
     {
@@ -141,6 +146,18 @@ class Convention
     public function setLibellePDF($libellePDF): self
     {
         $this->libellePDF = $libellePDF;
+
+        return $this;
+    }
+
+    public function getObjet(): ?string
+    {
+        return $this->objet;
+    }
+
+    public function setObjet(string $objet): self
+    {
+        $this->objet = $objet;
 
         return $this;
     }
