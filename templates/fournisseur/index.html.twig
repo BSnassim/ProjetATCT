@@ -5,11 +5,12 @@
 {% block body %}
     <h1>Fournisseur index</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
+                <th>CodeFournisseur</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
             <tr>
                 <td>{{ fournisseur.id }}</td>
                 <td>{{ fournisseur.nom }}</td>
+                <td>{{ fournisseur.codeFournisseur }}</td>
                 <td>
                     <a href="{{ path('fournisseur_show', {'id': fournisseur.id}) }}">show</a>
                     <a href="{{ path('fournisseur_edit', {'id': fournisseur.id}) }}">edit</a>
@@ -25,11 +27,12 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    
 
     <a href="{{ path('fournisseur_new') }}">Create new</a>
 {% endblock %}

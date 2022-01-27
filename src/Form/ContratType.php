@@ -21,14 +21,20 @@ class ContratType extends AbstractType
             ->add('preavis')
             ->add('type', ChoiceType::class, array(
                 'choices' => array(
-                    '1'=>'Uns',
-                    '2'=>'Deux',
-                    '3'=>'Trois',
+                    'Tacite reconduction ouvert'=>'Tacite reconduction ouvert',
+                    'Ferme'=>'Ferme',
+                    'Tacite 1 an + 2 ans'=>'Tacite 1 an + 2 ans',
                 ),))
             ->add('montant')
             ->add('numEnregistrement')
             ->add('periodiciteEntretien')
-            ->add('periodiciteFacturation')
+            ->add('periodiciteFacturation', ChoiceType::class, array(
+                'choices' => array(
+                    'Mensuel'=>'Mensuel',
+                    'Trimestriel'=>'Trimestriel',
+                    'Semestriel'=>'Semestriel',
+                    'Annuel'=>'Annuel'
+                ),))
             ->add('augmentation')
             ->add('filePDF',VichFileType::class, ['label' => 'PDF'])
             ;

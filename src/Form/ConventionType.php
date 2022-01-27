@@ -16,6 +16,7 @@ class ConventionType extends AbstractType
             ->add('dateFin')
             ->add('montant')
             ->add('libellePDF')
+            ->add('objet')
             ->add('numFournisseur')
         ;
     }
