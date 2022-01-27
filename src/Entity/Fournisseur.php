@@ -34,6 +34,11 @@ class Fournisseur
      */
     private $conventions;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $codeFournisseur;
+
     public function __construct()
     {
         $this->contrats = new ArrayCollection();
@@ -119,5 +124,17 @@ class Fournisseur
     public function __toString()
     {
         return $this->getNom();
+    }
+
+    public function getCodeFournisseur(): ?int
+    {
+        return $this->codeFournisseur;
+    }
+
+    public function setCodeFournisseur(int $codeFournisseur): self
+    {
+        $this->codeFournisseur = $codeFournisseur;
+
+        return $this;
     }
 }

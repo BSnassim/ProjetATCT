@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Contrat index</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -19,6 +19,7 @@
                 <th>PeriodiciteFacturation</th>
                 <th>Augmentation</th>
                 <th>LibellePDF</th>
+                <th>Objet</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -36,6 +37,7 @@
                 <td>{{ contrat.periodiciteFacturation }}</td>
                 <td>{{ contrat.augmentation }}</td>
                 <td>{{ contrat.libellePDF }}</td>
+                <td>{{ contrat.objet }}</td>
                 <td>
                     <a href="{{ path('contrat_show', {'id': contrat.id}) }}">show</a>
                     <a href="{{ path('contrat_edit', {'id': contrat.id}) }}">edit</a>
@@ -43,7 +45,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="12">no records found</td>
+                <td colspan="14">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

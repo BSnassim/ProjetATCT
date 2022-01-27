@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Convention index</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -13,6 +13,8 @@
                 <th>DateFin</th>
                 <th>Montant</th>
                 <th>LibellePDF</th>
+                <th>UpdatedAt</th>
+                <th>Objet</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,6 +26,8 @@
                 <td>{{ convention.dateFin ? convention.dateFin|date('Y-m-d') : '' }}</td>
                 <td>{{ convention.montant }}</td>
                 <td>{{ convention.libellePDF }}</td>
+                <td>{{ convention.updatedAt ? convention.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ convention.objet }}</td>
                 <td>
                     <a href="{{ path('convention_show', {'id': convention.id}) }}">show</a>
                     <a href="{{ path('convention_edit', {'id': convention.id}) }}">edit</a>
@@ -31,7 +35,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="8">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

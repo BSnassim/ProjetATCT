@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Fournisseur</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -14,6 +14,10 @@
             <tr>
                 <th>Nom</th>
                 <td>{{ fournisseur.nom }}</td>
+            </tr>
+            <tr>
+                <th>CodeFournisseur</th>
+                <td>{{ fournisseur.codeFournisseur }}</td>
             </tr>
         </tbody>
     </table>

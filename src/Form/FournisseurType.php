@@ -13,6 +13,7 @@ class FournisseurType extends AbstractType
     {
         $builder
             ->add('nom')
+            ->add('codeFournisseur')
         ;
     }
 
