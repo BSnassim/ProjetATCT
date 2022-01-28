@@ -36,7 +36,7 @@
                 <td>{{ contrat.periodiciteEntretien }}</td>
                 <td>{{ contrat.periodiciteFacturation }}</td>
                 <td>{{ contrat.augmentation }}</td>
-                <td>{{ contrat.libellePDF }}</td>
+                <td><a href={{ asset("uploads/pdf/contrats/" ~ contrat.libellePDF|url_encode ) }}>{{contrat.libellePDF}}</a></td>
                 <td>{{ contrat.objet }}</td>
                 <td>
                     <a href="{{ path('contrat_show', {'id': contrat.id}) }}">show</a>
@@ -51,5 +51,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('contrat_new') }}">Create new</a>
+    <a href="{{ path('contrat_new') }}"><button type="button" class="btn btn-secondary">Create new</button></a>
 {% endblock %}

@@ -49,7 +49,7 @@
             </tr>
             <tr>
                 <th>LibellePDF</th>
-                <td>{{ contrat.libellePDF }}</td>
+                <td><a href={{ asset("uploads/pdf/contrats/" ~ contrat.libellePDF|url_encode ) }}>{{contrat.libellePDF}}</a></td>
             </tr>
             <tr>
                 <th>Objet</th>
