@@ -8,25 +8,24 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>DateDebut</th>
-                <th>DateFin</th>
+                <th>Objet</th>
+                <th>Debut</th>
+                <th>Fin</th>
                 <th>Preavis</th>
                 <th>Type</th>
                 <th>Montant</th>
-                <th>NumEnregistrement</th>
-                <th>PeriodiciteEntretien</th>
-                <th>PeriodiciteFacturation</th>
+                <th>Enregistrement</th>
+                <th>Periodicite Entretien</th>
+                <th>Periodicite Facturation</th>
                 <th>Augmentation</th>
-                <th>LibellePDF</th>
-                <th>Objet</th>
+                <th>PDF</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for contrat in contrats %}
             <tr>
-                <td>{{ contrat.id }}</td>
+                <td>{{ contrat.objet }}</td>
                 <td>{{ contrat.dateDebut ? contrat.dateDebut|date('Y-m-d') : '' }}</td>
                 <td>{{ contrat.dateFin ? contrat.dateFin|date('Y-m-d') : '' }}</td>
                 <td>{{ contrat.preavis }}</td>
@@ -36,8 +35,7 @@
                 <td>{{ contrat.periodiciteEntretien }}</td>
                 <td>{{ contrat.periodiciteFacturation }}</td>
                 <td>{{ contrat.augmentation }}</td>
-                <td>{{ contrat.libellePDF }}</td>
-                <td>{{ contrat.objet }}</td>
+                <td><a href={{ asset("uploads/pdf/contrats/" ~ contrat.libellePDF|url_encode ) }}>{{contrat.libellePDF}}</a></td>
                 <td>
                     <a href="{{ path('contrat_show', {'id': contrat.id}) }}">show</a>
                     <a href="{{ path('contrat_edit', {'id': contrat.id}) }}">edit</a>
@@ -51,5 +49,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('contrat_new') }}">Create new</a>
+    <a href="{{ path('contrat_new') }}"><button type="button" class="btn btn-secondary">Create new</button></a>
 {% endblock %}
