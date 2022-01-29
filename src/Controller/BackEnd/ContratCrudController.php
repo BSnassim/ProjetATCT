@@ -20,35 +20,6 @@ class ContratCrudController extends AbstractCrudController
     {
         return Contrat::class;
     }
-
-    
-    public function configureFields(string $pageName): iterable
-    {
-        return [
-            //ChoiceField::new('type')
-            //->setChoices([
-              //  'Tacite reconduction ouvert'=>'Tacite reconduction ouvert',
-              //  'Ferme'=>'Ferme',
-              //  'Tacite 1 an + 2 ans'=>'Tacite 1 an + 2 ans',
-            //]),
-            //ChoiceField::new('periodiciteFacturation')
-            //->setChoices([
-             //   'Mensuel'=>'Mensuel',
-              //  'Trimestriel'=>'Trimestriel',
-               // 'Semestriel'=>'Semestriel',
-               // 'Annuel'=>'Annuel',
-
-            //])
-            //->renderExpanded(),
-            CollectionField::new('type'),
-        ];
-    }
-
-    public function configureActions(Actions $actions): Actions
-    {
-        return $actions
-        ->remove(Crud::PAGE_INDEX, Action::NEW);
-    }
     
     public function configureCrud(Crud $crud): Crud
     {

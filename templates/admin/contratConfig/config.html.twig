@@ -1,6 +1,7 @@
 {# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
 {# @var entities \EasyCorp\Bundle\EasyAdminBundle\Collection\EntityDtoCollection #}
 {# @var paginator \EasyCorp\Bundle\EasyAdminBundle\Orm\EntityPaginator #}
+
 {% extends ea.templatePath('layout') %}
 {% trans_default_domain ea.i18n.translationDomain %}
 
@@ -14,4 +15,14 @@
             ? (ea.crud.defaultPageTitle('index')|trans(ea.i18n.translationParameters, 'EasyAdminBundle'))|raw
             : (custom_page_title|trans(ea.i18n.translationParameters))|raw }}
     {%- endapply -%}
+{% endblock %}
+
+{% block main %}
+    <b>Champ : Type</b></br></br>
+    Ajouter un choix <input type="text"/><br/></br>
+    <select name="cars" id="cars">
+        <option value="volvo">Volvo</option>
+    </select></br></br>
+    <button class="btn btn-primary">Ajouter</button>
+    <button class="btn btn-primary">Supprimer</button>
 {% endblock %}
