@@ -38,11 +38,6 @@ class Contrat
     private $preavis;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $type;
-
-    /**
      * @ORM\Column(type="float")
      */
     private $montant;
@@ -92,6 +87,12 @@ class Contrat
      * @ORM\Column(type="string", length=255)
      */
     private $objet;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TypesContrat::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Type;
     
     public function __construct()
     {
@@ -156,14 +157,14 @@ class Contrat
         return $this;
     }
 
-    public function getType(): ?string
+    public function getType(): ?TypesContrat
     {
-        return $this->type;
+        return $this->Type;
     }
 
-    public function setType(string $type): self
+    public function setType(?TypesContrat $type): self
     {
-        $this->type = $type;
+        $this->Type = $type;
 
         return $this;
     }

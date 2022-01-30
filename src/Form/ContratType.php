@@ -3,11 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Contrat;
+use App\Entity\TypesContrat;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use App\Repository\TypesContratRepository;
 
 class ContratType extends AbstractType
 {
@@ -19,12 +21,7 @@ class ContratType extends AbstractType
             ->add('dateDebut')
             ->add('dateFin')
             ->add('preavis')
-            ->add('type', ChoiceType::class, array(
-                'choices' => array(
-                    'Tacite reconduction ouvert'=>'Tacite reconduction ouvert',
-                    'Ferme'=>'Ferme',
-                    'Tacite 1 an + 2 ans'=>'Tacite 1 an + 2 ans',
-                ),))
+            ->add('Type')
             ->add('montant')
             ->add('numEnregistrement')
             ->add('periodiciteEntretien')

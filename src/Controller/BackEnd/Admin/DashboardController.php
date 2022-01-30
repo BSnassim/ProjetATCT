@@ -10,8 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use App\Controller\BackEnd\FournisseurCrudController;
 use App\Entity\Fournisseur;
-use App\Entity\Contrat;
-use App\Entity\Convention;
+use App\Entity\TypesContrat;
+use App\Entity\User;
+use App\Entity\Admin;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -47,7 +48,9 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Fournisseurs', 'fas fa-list', Fournisseur::class);
-        yield MenuItem::linkToCrud('Contrats', 'fas fa-list', Contrat::class);
-        yield MenuItem::linkToCrud('Convention', 'fas fa-list', Convention::class);
+        yield MenuItem::linkToCrud('Types des contrats', 'fas fa-list', TypesContrat::class);
+        yield MenuItem::section('Controle des utilisateurs');
+        yield MenuItem::linkToCrud('Admins', 'fas fa-list', Admin::class);
+        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class);
     }
 }
