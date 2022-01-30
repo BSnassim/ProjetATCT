@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use App\Repository\TypesContratRepository;
 
 class ContratType extends AbstractType
@@ -18,8 +19,16 @@ class ContratType extends AbstractType
         $builder
             ->add('numFournisseur')
             ->add('objet')
-            ->add('dateDebut')
-            ->add('dateFin')
+            ->add('dateDebut',DateType::Class, array(
+                'widget' => 'choice',
+                'years' => range(date('Y')-100, date('Y')+100),
+                'label' => 'Debut'
+              ))
+            ->add('dateFin',DateType::Class, array(
+                'widget' => 'choice',
+                'years' => range(date('Y')-100, date('Y')+100),
+                'label' => 'Fin'
+              ))
             ->add('preavis')
             ->add('Type')
             ->add('montant')

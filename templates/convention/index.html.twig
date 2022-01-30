@@ -1,45 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Convention index{% endblock %}
+{% block title %}Convention{% endblock %}
 
 {% block body %}
-    <h1>Convention index</h1>
+    <h1>Liste des conventions</h1>
 
     <table class="table table-striped">
         <thead>
             <tr>
+                <th>Objet</th>
                 <th>Id</th>
-                <th>DateDebut</th>
-                <th>DateFin</th>
+                <th>Debut</th>
+                <th>Fin</th>
                 <th>Montant</th>
                 <th>LibellePDF</th>
-                <th>UpdatedAt</th>
-                <th>Objet</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for convention in conventions %}
             <tr>
+                <td>{{ convention.objet }}</td>
                 <td>{{ convention.id }}</td>
                 <td>{{ convention.dateDebut ? convention.dateDebut|date('Y-m-d') : '' }}</td>
                 <td>{{ convention.dateFin ? convention.dateFin|date('Y-m-d') : '' }}</td>
                 <td>{{ convention.montant }}</td>
                 <td>{{ convention.libellePDF }}</td>
-                <td>{{ convention.updatedAt ? convention.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ convention.objet }}</td>
+                
                 <td>
-                    <a href="{{ path('convention_show', {'id': convention.id}) }}">show</a>
-                    <a href="{{ path('convention_edit', {'id': convention.id}) }}">edit</a>
+                    <a href="{{ path('convention_show', {'id': convention.id}) }}">Afficher</a>
+                    <a href="{{ path('convention_edit', {'id': convention.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">aucun convention trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('convention_new') }}"><button class="btn btn-secondary">Create new</button></a>
+    <a href="{{ path('convention_new') }}"><button class="btn btn-secondary">Ajouter une convention</button></a>
 {% endblock %}

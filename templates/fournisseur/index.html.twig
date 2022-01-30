@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Fournisseur index{% endblock %}
+{% block title %}Fournisseurs{% endblock %}
 
 {% block body %}
-    <h1>Fournisseur index</h1>
+    <h1>Liste des fournisseurs</h1>
 
     <table class="table table-striped">
         <thead>
@@ -21,18 +21,18 @@
                 <td>{{ fournisseur.nom }}</td>
                 <td>{{ fournisseur.codeFournisseur }}</td>
                 <td>
-                    <a href="{{ path('fournisseur_show', {'id': fournisseur.id}) }}">show</a>
-                    <a href="{{ path('fournisseur_edit', {'id': fournisseur.id}) }}">edit</a>
+                    <a href="{{ path('fournisseur_show', {'id': fournisseur.id}) }}">Afficher</a>
+                    <a href="{{ path('fournisseur_edit', {'id': fournisseur.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">aucun fournisseur trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
     
 
-    <a href="{{ path('fournisseur_new') }}"><button class="btn btn-secondary">Create new</button></a>
+    <a href="{{ path('fournisseur_new') }}"><button class="btn btn-secondary">Ajouter un fournisseur</button></a>
 {% endblock %}

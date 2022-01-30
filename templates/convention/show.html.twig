@@ -8,15 +8,19 @@
     <table  class="table table-striped">
         <tbody>
             <tr>
+            <tr>
+                <th>Objet</th>
+                <td>{{ convention.objet }}</td>
+            </tr>
                 <th>Id</th>
                 <td>{{ convention.id }}</td>
             </tr>
             <tr>
-                <th>DateDebut</th>
+                <th>Debut</th>
                 <td>{{ convention.dateDebut ? convention.dateDebut|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>DateFin</th>
+                <th>Fin</th>
                 <td>{{ convention.dateFin ? convention.dateFin|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
@@ -24,23 +28,16 @@
                 <td>{{ convention.montant }}</td>
             </tr>
             <tr>
-                <th>LibellePDF</th>
+                <th>PDF</th>
                 <td>{{ convention.libellePDF }}</td>
             </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ convention.updatedAt ? convention.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Objet</th>
-                <td>{{ convention.objet }}</td>
-            </tr>
+            
         </tbody>
     </table>
 
-    <a href="{{ path('convention_index') }}">back to list</a>
+    <a href="{{ path('convention_index') }}">retour au liste</a>
 
-    <a href="{{ path('convention_edit', {'id': convention.id}) }}">edit</a>
+    <a href="{{ path('convention_edit', {'id': convention.id}) }}">Modifier</a>
 
     {{ include('convention/_delete_form.html.twig') }}
 {% endblock %}

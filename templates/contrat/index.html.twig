@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contrat index{% endblock %}
+{% block title %}Contrats{% endblock %}
 
 {% block body %}
-    <h1>Contrat index</h1>
+    <h1>Liste des contrats</h1>
 
     <table class="table table-striped">
         <thead>
@@ -37,17 +37,17 @@
                 <td>{{ contrat.augmentation }}</td>
                 <td><a href={{ asset("uploads/pdf/contrats/" ~ contrat.libellePDF|url_encode ) }}>{{contrat.libellePDF}}</a></td>
                 <td>
-                    <a href="{{ path('contrat_show', {'id': contrat.id}) }}">show</a>
-                    <a href="{{ path('contrat_edit', {'id': contrat.id}) }}">edit</a>
+                    <a href="{{ path('contrat_show', {'id': contrat.id}) }}">Afficher</a>
+                    <a href="{{ path('contrat_edit', {'id': contrat.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="14">no records found</td>
+                <td colspan="14">aucun contrat trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('contrat_new') }}"><button class="btn btn-secondary">Create new</button></a>
+    <a href="{{ path('contrat_new') }}"><button class="btn btn-secondary">Ajouter un contrat</button></a>
 {% endblock %}
