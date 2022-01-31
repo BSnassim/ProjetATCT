@@ -3,6 +3,7 @@
 namespace App\Controller\BackEnd\Admin;
 
 use App\Entity\Admin;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -28,6 +29,10 @@ class AdminCrudController extends AbstractCrudController
         return Admin::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud->setEntityPermission('ROLE_ADMIN');
+    }
     
     public function configureFields(string $pageName): iterable
     {

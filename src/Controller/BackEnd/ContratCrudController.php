@@ -1,21 +1,15 @@
 <?php
 
-namespace App\Controller\BackEnd\Admin;
+namespace App\Controller\BackEnd;
 
-use App\Entity\TypesContrat;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use App\Entity\Contrat;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class TypesContratCrudController extends AbstractCrudController
+class ContratCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return TypesContrat::class;
-    }
-
-    public function configureCrud(Crud $crud): Crud
-    {
-        return $crud->setEntityPermission('ROLE_ADMIN');
+        return Contrat::class;
     }
 
     /*

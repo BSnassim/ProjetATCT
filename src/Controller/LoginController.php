@@ -20,7 +20,7 @@ class LoginController extends AbstractController
             'last_username' => $lastUsername,
             'error'         => $error,
             'page_title'    => 'ATCT Login',
-            'target_path'   => 'loggedin',
+            'target_path'   => 'admin',
         ]);
     }
 }

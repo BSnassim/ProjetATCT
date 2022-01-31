@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use App\Controller\BackEnd\FournisseurCrudController;
 use App\Entity\Fournisseur;
+use App\Entity\Contrat;
+use App\Entity\Convention;
 use App\Entity\TypesContrat;
 use App\Entity\User;
 use App\Entity\Admin;
@@ -33,10 +35,19 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Fournisseurs', 'fas fa-list', Fournisseur::class);
-        yield MenuItem::linkToCrud('Types des contrats', 'fas fa-list', TypesContrat::class);
-        yield MenuItem::section('Controle des utilisateurs');
-        yield MenuItem::linkToCrud('Admins', 'fas fa-list', Admin::class);
-        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class);
+        if($this->isGranted('ROLE_ADMIN')){
+            yield MenuItem::section('Configuration');
+            yield MenuItem::linkToCrud('Types des contrats', 'fas fa-list', TypesContrat::class);
+
+            yield MenuItem::section('Controle des utilisateurs');
+            yield MenuItem::linkToCrud('Admins', 'fas fa-user', Admin::class);
+            yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
+        }
+        if($this->isGranted('ROLE_USER')){
+            yield MenuItem::section('Contrats et Conventions');
+            yield MenuItem::linkToCrud('Fournisseurs', 'fa fa-tags', Fournisseur::class);
+            yield MenuItem::linkToCrud('Contrats', 'fa fa-file-text', Contrat::class);
+            yield MenuItem::linkToCrud('Conventions', 'fa fa-file-text', Convention::class);
+        }
     }
 }
