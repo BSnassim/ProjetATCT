@@ -172,6 +172,15 @@
             "./bin/console"
         ]
     },
+    "symfony/crowdin-translation-provider": {
+        "version": "5.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.3",
+            "ref": "8acdcff2acee247e79f16ed0b2abc8fd53cf0d30"
+        }
+    },
     "symfony/debug-bundle": {
         "version": "5.4",
         "recipe": {
@@ -466,6 +475,9 @@
     },
     "symfony/uid": {
         "version": "v5.4.2"
+    },
+    "symfony/ux-chartjs": {
+        "version": "v2.0.1"
     },
     "symfony/validator": {
         "version": "5.4",

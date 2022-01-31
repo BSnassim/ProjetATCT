@@ -47,9 +47,9 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/contrat_index, roles: ROLE_USER }
-        - { path: ^/fournisseur_index, roles: ROLE_USER }
-        - { path: ^/convention_index, roles: ROLE_USER }
+        - { path: ^/contrat, roles: ROLE_USER }
+        - { path: ^/fournisseur, roles: ROLE_USER }
+        - { path: ^/convention, roles: ROLE_USER }
 
 
     role_hierarchy:
