@@ -4,6 +4,6 @@
 
 {% block content %}
 <div>
-    <img class="position-absolute top-50 start-50 translate-middle" src="{{ asset('image/atct-logo.png') }}" alt="" height="100px" width="200px">
+    {{ render_chart(chart) }}
 </div>
 {% endblock content %}
