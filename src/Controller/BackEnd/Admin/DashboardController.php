@@ -5,6 +5,7 @@ namespace App\Controller\BackEnd\Admin;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
@@ -21,11 +22,10 @@ use Symfony\UX\Chartjs\Model\Chart;
 class DashboardController extends AbstractDashboardController
 {
     #[Route('/admin', name: 'admin')]
-    public function index(ChartBuilderInterface $chartBuilder): Response
+    public function index(): Response
     {
-        $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
 
-        $chart->setData([
+        $this->chart->setData([
             'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             'datasets' => [
                 [
@@ -37,7 +37,7 @@ class DashboardController extends AbstractDashboardController
             ],
         ]);
 
-        $chart->setOptions([
+        $this->chart->setOptions([
             'scales' => [
                 'y' => [
                     'suggestedMin' => 0,
@@ -46,8 +46,13 @@ class DashboardController extends AbstractDashboardController
             ],
         ]);
         return $this->render('admin/dashboard.html.twig', [
-            'chart' => $chart,
+            'chart' => $this->chart,
         ]);
+    }
+    public $chart;
+    public function __construct(ChartBuilderInterface $chartBuilder)
+    {
+        $this->chart = $chartBuilder->createChart(Chart::TYPE_LINE);
     }
     
     public function configureDashboard(): Dashboard
