@@ -5,14 +5,15 @@ namespace App\Controller\BackEnd;
 use App\Entity\Contrat;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use Vich\UploaderBundle\Form\Type\VichFileType;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-
-
 
 class ContratCrudController extends AbstractCrudController
 {
@@ -21,38 +22,30 @@ class ContratCrudController extends AbstractCrudController
         return Contrat::class;
     }
 
-    
     public function configureFields(string $pageName): iterable
     {
         return [
-            //ChoiceField::new('type')
-            //->setChoices([
-              //  'Tacite reconduction ouvert'=>'Tacite reconduction ouvert',
-              //  'Ferme'=>'Ferme',
-              //  'Tacite 1 an + 2 ans'=>'Tacite 1 an + 2 ans',
-            //]),
-            //ChoiceField::new('periodiciteFacturation')
-            //->setChoices([
-             //   'Mensuel'=>'Mensuel',
-              //  'Trimestriel'=>'Trimestriel',
-               // 'Semestriel'=>'Semestriel',
-               // 'Annuel'=>'Annuel',
-
-            //])
-            //->renderExpanded(),
-            CollectionField::new('type'),
+            TextField::new('objet'),
+            AssociationField::new('numFournisseur','Fournisseur'),
+            DateField::new('dateDebut','Debut'),
+            DateField::new('dateFin','Fin'),
+            IntegerField::new('preavis'),
+            MoneyField::new('montant')->setCurrency('TND'),
+            IntegerField::new('numEnregistrement'),
+            AssociationField::new('Type'),
+            ChoiceField::new('periodiciteFacturation')
+            ->setChoices([
+                'Mensuel'=>'Mensuel',
+                'Trimestriel'=>'Trimestriel',
+                'Semestriel'=>'Semestriel',
+                'Annuel'=>'Annuel',
+            ])
+            ->renderExpanded(),
+            TextField::new('periodiciteEntretien'),
+            NumberField::new('augmentation'),
+            TextareaField::new('filePDF','PDF')->setFormType(VichFileType::class)->hideOnIndex(),
+            TextField::new('libellePDF','PDF')->hideOnForm()->setTemplatePath('admin/showPDF.html.twig'),
         ];
     }
 
-    public function configureActions(Actions $actions): Actions
-    {
-        return $actions
-        ->remove(Crud::PAGE_INDEX, Action::NEW);
-    }
-    
-    public function configureCrud(Crud $crud): Crud
-    {
-        return $crud
-            ->overrideTemplate('crud/index', 'admin/contratConfig/config.html.twig');
-    }
 }

@@ -12,42 +12,66 @@ use App\Controller\BackEnd\FournisseurCrudController;
 use App\Entity\Fournisseur;
 use App\Entity\Contrat;
 use App\Entity\Convention;
+use App\Entity\TypesContrat;
+use App\Entity\User;
+use App\Entity\Admin;
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
+use Symfony\UX\Chartjs\Model\Chart;
 
 class DashboardController extends AbstractDashboardController
 {
     #[Route('/admin', name: 'admin')]
-    public function index(): Response
+    public function index(ChartBuilderInterface $chartBuilder): Response
     {
-        //return parent::index();
+        $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
 
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        //$adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        //return $this->redirect($adminUrlGenerator->setController(FournisseurCrudController::class)->generateUrl());
+        $chart->setData([
+            'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            'datasets' => [
+                [
+                    'label' => 'My First dataset',
+                    'backgroundColor' => 'rgb(255, 99, 132)',
+                    'borderColor' => 'rgb(255, 99, 132)',
+                    'data' => [0, 10, 5, 2, 20, 30, 45],
+                ],
+            ],
+        ]);
 
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
-
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-        return $this->render('@EasyAdmin/page/content.html.twig');
+        $chart->setOptions([
+            'scales' => [
+                'y' => [
+                    'suggestedMin' => 0,
+                    'suggestedMax' => 100,
+                ],
+            ],
+        ]);
+        return $this->render('admin/dashboard.html.twig', [
+            'chart' => $chart,
+        ]);
     }
-
+    
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('ProjetATCT');
+            ->setTitle('ATCT');
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Fournisseurs', 'fas fa-list', Fournisseur::class);
-        yield MenuItem::linkToCrud('Contrats', 'fas fa-list', Contrat::class);
-        yield MenuItem::linkToCrud('Convention', 'fas fa-list', Convention::class);
+        if($this->isGranted('ROLE_ADMIN')){
+            yield MenuItem::section('Configuration');
+            yield MenuItem::linkToCrud('Types des contrats', 'fas fa-list', TypesContrat::class);
+
+            yield MenuItem::section('Controle des utilisateurs');
+            yield MenuItem::linkToCrud('Admins', 'fas fa-user', Admin::class);
+            yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
+        }
+        if($this->isGranted('ROLE_USER')){
+            yield MenuItem::section('Contrats et Conventions');
+            yield MenuItem::linkToCrud('Fournisseurs', 'fa fa-tags', Fournisseur::class);
+            yield MenuItem::linkToCrud('Contrats', 'fa fa-file-text', Contrat::class);
+            yield MenuItem::linkToCrud('Conventions', 'fa fa-file-text', Convention::class);
+        }
     }
 }
