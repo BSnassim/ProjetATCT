@@ -37,7 +37,7 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            EmailField::new('Email'),
+            EmailField::new('Email')->setRequired('true'),
             Field::new('plainPassword', 'New password')->onlyOnForms()
                 ->setFormType(RepeatedType::class)
                 ->setFormTypeOptions([
