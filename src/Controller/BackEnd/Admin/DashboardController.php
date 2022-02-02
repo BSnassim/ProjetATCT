@@ -21,8 +21,9 @@ use Symfony\UX\Chartjs\Model\Chart;
 
 class DashboardController extends AbstractDashboardController
 {
+    
     #[Route('/admin', name: 'admin')]
-    public function index(): Response
+    public function index(ChartBuilderInterface $chartBuilder): Response
     {
 
         $this->chart->setData([
@@ -36,7 +37,6 @@ class DashboardController extends AbstractDashboardController
                 ],
             ],
         ]);
-
         $this->chart->setOptions([
             'scales' => [
                 'y' => [
