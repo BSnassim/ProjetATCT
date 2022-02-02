@@ -23,9 +23,8 @@ class DashboardController extends AbstractDashboardController
 {
     
     #[Route('/admin', name: 'admin')]
-    public function index(ChartBuilderInterface $chartBuilder): Response
+    public function index(): Response
     {
-
         $this->chart->setData([
             'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             'datasets' => [
