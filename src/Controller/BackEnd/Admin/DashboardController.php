@@ -20,6 +20,7 @@ use Symfony\UX\Chartjs\Model\Chart;
 
 class DashboardController extends AbstractDashboardController
 {
+    
     #[Route('/admin', name: 'admin')]
     public function index(ChartBuilderInterface $chartBuilder): Response
     {
