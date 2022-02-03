@@ -16,19 +16,32 @@ use App\Entity\Convention;
 use App\Entity\TypesContrat;
 use App\Entity\User;
 use App\Entity\Admin;
+use App\Repository\ContratRepository;
+use App\Repository\ConventionRepository;
+use App\Repository\AdminRepository;
+use App\Repository\UserRepository;
+
 class DashboardController extends AbstractDashboardController
 {
     
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        return $this->render('admin/dashboard.html.twig', [    
+        return $this->render('admin/dashboard.html.twig', [
+            'userSum' => $this->userSum ,
+            'adminSum' => $this->adminSum ,
+            'contratSum' => $this->contratSum ,
+            'conventionSum' => $this->conventionSum ,
         ]);
     }
 
-    public function __construct()
+    public $userSum, $adminSum, $contratSum, $conventionSum;
+    public function __construct(ContratRepository $contrat, ConventionRepository $convention, AdminRepository $admin, UserRepository $user )
     {
-        
+        $this->userSum = count($user->findAll());
+        $this->adminSum = count($admin->findAll());
+        $this->contratSum = count($contrat->findAll());
+        $this->conventionSum = count($convention->findAll());
     }
     
     public function configureDashboard(): Dashboard

@@ -1,7 +1,4 @@
 {
-    "appaydin/pd-widget": {
-        "version": "3.0.0"
-    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -572,6 +569,9 @@
     },
     "symfony/yaml": {
         "version": "v5.4.2"
+    },
+    "twbs/bootstrap": {
+        "version": "v5.1.3"
     },
     "twig/extra-bundle": {
         "version": "v3.3.7"
