@@ -4,8 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2c567357a83f6bc9073528fbe2765b85",
+    "content-hash": "f9e6bdf34301ecc8728227931114d5f1",
     "packages": [
+        {
+            "name": "appaydin/pd-widget",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/appaydin/pd-widget.git",
+                "reference": "7fe64643182f50f66b8ef89cc1416d3ec95002d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/appaydin/pd-widget/zipball/7fe64643182f50f66b8ef89cc1416d3ec95002d1",
+                "reference": "7fe64643182f50f66b8ef89cc1416d3ec95002d1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0",
+                "symfony/event-dispatcher": "*",
+                "twig/twig": "*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Pd\\WidgetBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ramazan APAYDIN",
+                    "homepage": "https://github.com/appaydin"
+                }
+            ],
+            "description": "Symfony Simple Widget Bundle",
+            "homepage": "https://github.com/appaydin/pd-widget",
+            "keywords": [
+                "admin-widget",
+                "pd-admin",
+                "pd-widget",
+                "symfony-widget",
+                "widget"
+            ],
+            "support": {
+                "issues": "https://github.com/appaydin/pd-widget/issues",
+                "source": "https://github.com/appaydin/pd-widget/tree/3.0.0"
+            },
+            "time": "2021-05-06T22:06:40+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "1.13.2",
@@ -9081,5 +9131,5 @@
         "ext-iconv": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }

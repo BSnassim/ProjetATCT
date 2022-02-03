@@ -3,7 +3,5 @@
 {% block page_title %} Dashboard {% endblock %}
 
 {% block content %}
-<div>
-    {{ render_chart(chart) }}
-</div>
+    {{ pd_widget_render('admin', ['user_info']) }}
 {% endblock content %}

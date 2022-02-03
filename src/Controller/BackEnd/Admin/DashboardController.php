@@ -16,42 +16,19 @@ use App\Entity\Convention;
 use App\Entity\TypesContrat;
 use App\Entity\User;
 use App\Entity\Admin;
-use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
-use Symfony\UX\Chartjs\Model\Chart;
-
 class DashboardController extends AbstractDashboardController
 {
     
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        $this->chart->setData([
-            'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            'datasets' => [
-                [
-                    'label' => 'My First dataset',
-                    'backgroundColor' => 'rgb(255, 99, 132)',
-                    'borderColor' => 'rgb(255, 99, 132)',
-                    'data' => [0, 10, 5, 2, 20, 30, 45],
-                ],
-            ],
-        ]);
-        $this->chart->setOptions([
-            'scales' => [
-                'y' => [
-                    'suggestedMin' => 0,
-                    'suggestedMax' => 100,
-                ],
-            ],
-        ]);
-        return $this->render('admin/dashboard.html.twig', [
-            'chart' => $this->chart,
+        return $this->render('admin/dashboard.html.twig', [    
         ]);
     }
-    public $chart;
-    public function __construct(ChartBuilderInterface $chartBuilder)
+
+    public function __construct()
     {
-        $this->chart = $chartBuilder->createChart(Chart::TYPE_LINE);
+        
     }
     
     public function configureDashboard(): Dashboard

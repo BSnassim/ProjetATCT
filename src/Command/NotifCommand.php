@@ -9,6 +9,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use App\Service\MailAll;
+use App\Repository\ContratRepository;
+use DateTime;
 
 #[AsCommand(
     name: 'notif',
@@ -16,6 +19,16 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class NotifCommand extends Command
 {
+    public $mailusers;
+    public $contrats;
+
+    public function __construct(MailAll $mailer, ContratRepository $repo)
+    {
+        $this->mailusers = $mailer;
+        $this->contrats = $repo->findAll();
+        parent::__construct();
+    }
+
     protected function configure(): void
     {
         $this
@@ -26,6 +39,13 @@ class NotifCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        foreach($this->contrats as $contrat){
+            $today = new DateTime('today');
+            $interval = $today->diff($contrat->getDateFin());
+            if( ($interval->days)==30 || ($interval->days)==60 || ($interval->days)==90)
+            $this->mailusers->NotifyUsers($contrat->getObjet());
+        }
+
         $io = new SymfonyStyle($input, $output);
         $arg1 = $input->getArgument('arg1');
 
