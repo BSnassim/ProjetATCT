@@ -93,6 +93,16 @@ class Contrat
      * @ORM\JoinColumn(nullable=false)
      */
     private $Type;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $suivi;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $repetitive;
     
     public function __construct()
     {
@@ -261,6 +271,30 @@ class Contrat
     public function setObjet(string $objet): self
     {
         $this->objet = $objet;
+
+        return $this;
+    }
+
+    public function getSuivi(): ?bool
+    {
+        return $this->suivi;
+    }
+
+    public function setSuivi(bool $suivi): self
+    {
+        $this->suivi = $suivi;
+
+        return $this;
+    }
+
+    public function getRepetitive(): ?bool
+    {
+        return $this->repetitive;
+    }
+
+    public function setRepetitive(bool $repetitive): self
+    {
+        $this->repetitive = $repetitive;
 
         return $this;
     }

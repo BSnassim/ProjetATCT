@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use App\Repository\UserRepository;
+use DateTime;
 
 class MailAll
 {
@@ -17,16 +18,24 @@ class MailAll
         $this->mailer = $mailer;
         $this->repo = $repo;
     }
-    public function NotifyUsers(string $objet)
+    public function NotifyUsers(string $objet, DateTime $fin, bool $suivi, bool $repetitive)
     {
         $users = $this->repo->findAll();
+        $suiv;
+        $rep;
+        if($suivi)
+        $suiv = "avec suivi";
+        else $suiv = "sans suivi";
+        if($repetitive)
+        $rep = "repetitive";
+        else $rep = "non repetitive";
         foreach($users as $user){
             $to = $user->getEmail();
             $email = (new Email())
             ->from('atct@app.com')
             ->to($to)
-            ->subject('Notification du contrat')
-            ->html("Le contrat d'objet : ". $objet . "</br> Expirera dans moins de 90 jours.");
+            ->subject('Notification du contrat: '. $objet)
+            ->html("Le contrat : ". $objet . "<br> Prendra fin le ". $fin->format('Y-m-d') ." . <br> Ce contrat est " . $rep . " et " . $suiv .".");
 
             $this->mailer->send($email);
         }

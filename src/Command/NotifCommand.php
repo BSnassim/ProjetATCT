@@ -42,8 +42,8 @@ class NotifCommand extends Command
         foreach($this->contrats as $contrat){
             $today = new DateTime('today');
             $interval = $today->diff($contrat->getDateFin());
-            if( ($interval->days)==30 || ($interval->days)==60 || ($interval->days)==90)
-            $this->mailusers->NotifyUsers($contrat->getObjet());
+            if( ($interval->days)==90 || ($interval->days)==105 || ($interval->days)==120)
+            $this->mailusers->NotifyUsers($contrat->getObjet(), $contrat->getDateFin(), $contrat->getSuivi(), $contrat->getRepetitive());
         }
 
         $io = new SymfonyStyle($input, $output);

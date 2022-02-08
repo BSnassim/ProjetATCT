@@ -1,26 +1,29 @@
-Dashboard: Tableau de bord
-Fournisseurs: Fournisseurs
-Types des contrats: Types des contrats
-Controle des utilisateurs: Controle des utilisateurs
-Admins: Administrateurs
-Utilisateurs: Utilisateurs
+---
 Admin: Administrateur
-Email: E-mail
-User: Utilisateur
-Num fournisseur: N° Fournisseur
-Objet: Objet
-Debut: Debut
-Fin: Fin
-Preavis: Preavis
-Type: Type
-Montant: Montant
-Num enregistrement: N° Enregistrement
-Num Enregistrement: N° Enregistrement
-Periodicite entretien: Périodicité entretien
-Periodicite facturation: Périodicité facturation
-Mensuel: Mensuel
-Trimestriel: Trimestriel
-Semestriel: Semestriel
+Admins: Administrateurs
 Annuel: Annuel
 Augmentation: Augmentation
+Controle des utilisateurs: Controle des utilisateurs
+Dashboard: Tableau de bord
+Debut: Debut
+Email: E-mail
+Fin: Fin
+Fournisseurs: Fournisseurs
+Mensuel: Mensuel
+Montant: Montant
+Num Enregistrement: N° Enregistrement
+Num enregistrement: N° Enregistrement
+Num fournisseur: N° Fournisseur
+Objet: Objet
 PDF: PDF
+Periodicite Entretien: Entretien
+Periodicite Facturation: Facturation
+Periodicite entretien: Périodicité entretien
+Periodicite facturation: Périodicité facturation
+Preavis: Preavis
+Semestriel: Semestriel
+Trimestriel: Trimestriel
+Type: Type
+Types des contrats: Types des contrats
+User: Utilisateur
+Utilisateurs: Utilisateurs

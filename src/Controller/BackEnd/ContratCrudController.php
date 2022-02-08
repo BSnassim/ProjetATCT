@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class ContratCrudController extends AbstractCrudController
@@ -43,6 +44,8 @@ class ContratCrudController extends AbstractCrudController
             ->renderExpanded(),
             TextField::new('periodiciteEntretien'),
             NumberField::new('augmentation'),
+            BooleanField::new('suivi'),
+            BooleanField::new('repetitive'),
             TextareaField::new('filePDF','PDF')->setFormType(VichFileType::class)->hideOnIndex(),
             TextField::new('libellePDF','PDF')->hideOnForm()->setTemplatePath('admin/showPDF.html.twig'),
         ];
